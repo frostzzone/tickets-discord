@@ -52,8 +52,10 @@ client.on("interactionCreate", async (interaction) => {
 async function ticket(interaction, rname, parent) {
   if(!bot) throw new Error("Client not provided, Ticket system will not be working.")
   let reaction = interaction;
+  let reactioncat = reaction.channel.parent.id;
   reaction.guild.channels
   .create(`ticket-${interaction.member.user.username}`, {
+    parent: reactioncat,
     permissionOverwrites: [
       {
         id: interaction.member.user.id,
